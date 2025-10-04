@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MarketplaceDemo.Models.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+<h1>Products</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Home")">Create new product (MVC)</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Id</th><th>Name</th><th>Price</th><th>Stock</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@(p.GetType().GetProperty("Stock") != null ? (object)p.Stock : "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>
